@@ -1,0 +1,27 @@
+td{
+    border: 2px white solid;
+    padding: 4px 10px;
+   
+}
+table{
+    margin-top: 40px;
+    border-spacing: 10px 30px;
+    margin-left :40px;
+}
+.car{
+    width: 35px;
+    height: 20px;
+    rotate: 180;
+    top: 50px;
+    left: 10px;
+}
+img{
+    width: 30px;
+    height: auto;
+}
+body{
+    background-image: url('background.jpeg');
+    background-size: cover;
+    color: black;
+    font-weight: bold;
+}

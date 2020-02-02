@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>parking</title>
+        <link rel="stylesheet" type="text/css" href="web.css">
+    </head>
+    <body onload="myFunction()">
+
+        <button onclick="myFunction()">generate</button>
+
+        <script>
+            var legend = {
+                0:0,
+                1:0,
+                2:0,
+            }
+            var arr =[]
+            function myFunction() {
+                legend[0]=0;
+                legend[1]=0;
+                legend[2]=0;
+            for(i=0; i<90;i++){
+                arr[i]=Math.floor(Math.random() * 100 % 3);
+            }  
+            populate()
+            }
+            function populate(){
+                var TBody = document.getElementById("tableBody");
+                while (TBody.rows.length > 0) {
+                TBody.deleteRow(0)
+            }
+                
+                var newR, newC
+                var min_loc=[]
+                for (var j=0;j<3;j++){
+                    newR = TBody.insertRow(TBody.rows.length)
+                    for(var i=j*30;i<(j+1)*30;i++){
+                            newC = newR.insertCell(newR.cells.length)
+                            var img = document.createElement('img');
+                            
+                            //empty
+                            if(arr[i]==0){
+                                
+                                img.src = "park.png";
+                                newC.appendChild(img);
+                            
+                            }
+                            if(arr[i]==1){
+                                
+                                img.src = "purple.png";
+                                newC.appendChild(img);
+                            
+                            }
+                            if(arr[i]==2){
+                                
+                                img.src = "blue.png";
+                                newC.appendChild(img);
+                            
+                            }
+                            legend[arr[i]]+=1
+                        }
+                    min_loc[j] = arr.slice(30*j,30*(j+1)).indexOf(0) + 1
+                }
+
+                col = Math.min(...min_loc)
+                row = min_loc.indexOf(col) + 1
+                
+                document.getElementById("park").innerHTML = "The closest spot is: "+row+"th row and "+col+"th column"
+                document.getElementById("parking").innerHTML = "Empty: "+legend[0]
+                document.getElementById("student").innerHTML = "Student: "+legend[1]
+                document.getElementById("faculty").innerHTML = "Faculty: "+legend[2]
+            }
+        </script>
+        <br><br>
+        <div><img src="red.png"></div>
+            <table ALIGN="center" ID="tableBody">
+            </table>
+            <p id="park" align="center"></p>
+            <table>
+                <tr>
+                    <td><img src="park.png"></td>
+                    <td><p id="parking"></p></td>
+                </tr>
+                <tr>
+                    <td><img src="purple.png"></td>
+                    <td><p id="student"></p></td>
+                </tr>
+                <tr>
+                    <td><img src="blue.png"></td>
+                    <td><p id="faculty"></p></td>
+                </tr>
+            </table>
+            
+    </body>
+</html>
